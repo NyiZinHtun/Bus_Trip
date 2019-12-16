@@ -17,9 +17,8 @@ class CreateBusesTable extends Migration
             $table->increments('id');
             $table->string('bus_no');
             $table->unsignedInteger('gate_id');
-            $table->integer('total_seat');
+            $table->unsignedInteger('number_of_seats')->nullable();
             $table->string('departure_time');
-            $table->boolean('is_avaliable')->default(true);
             $table->timestamps();
             $table->softDeletes();
             $table->foreign('gate_id')->references('id')->on('gates')->onDelete('restrict');

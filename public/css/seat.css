@@ -1,0 +1,21 @@
+.aisle{
+    display: table-cell;
+    text-align: center;
+    vertical-align: middle;
+    padding: 10px 5px 10px 5px;
+}
+
+a.seat span {
+    display: table-cell;
+    text-align: center;
+    vertical-align: middle;
+    background: #e5e7e9;
+    padding: 10px 30px 10px 30px;
+}
+
+.driver-seat {
+    background: #e5e7e9;
+    border: 1px solid #888;
+    padding: 10px 10px 10px 10px;
+    margin: 5px;
+}

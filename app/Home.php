@@ -11,5 +11,7 @@ class Home extends Model
         return $this->belongsTo(Gate::class);
     }
     
-    
+    public function route(){
+        return $this->belongsTo(Route::class);
+    }
 }

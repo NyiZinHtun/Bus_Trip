@@ -21,7 +21,8 @@
 		<thead>
 			<tr>
 				<th>Gate</th>
-				<th>Depature Time</th>
+				<th>Bus_Fee</th>
+				<!-- <th>Departure Time</th> -->
 				<th>Action</th>
 			</tr>
 		</thead>
@@ -30,6 +31,7 @@
 			@foreach($details as $gate)
 			<tr>
 				<td>{{$gate->name}}</td>
+				<td>{{ $gate->bus_fee }}</td>
 				<td>
 					<a href="{{url('select_bus/'.$gate->id)}}" class="btn btn-success">Choose</a>
 				</td>
@@ -40,9 +42,18 @@
 			@foreach($homes as $home)
 			<tr>
 				<td>{{$home->gate->name}}</td>
-				<td>
-				<input type="text" name="depature_time" id="time-{{ $home->gate_id }}">
-				</td>
+				<td>{{ $home->gate->bus_fee }}</td>
+				<!-- <td> -->
+					<!-- <select name="Time" class="form-control">
+					<option value="0">Choose Time</option>
+					@foreach($home->gate->buses as $bus)
+						<option value="{{ $bus->id }}">
+							{{ $bus->departure_time }}
+						</option>
+					@endforeach
+				</select> -->
+				<!-- <input type="text" name="depature_time" id="time-{{ $home->gate_id}}"> -->
+				<!-- </td> -->
 				<td>
 					<a href="{{url('select_bus/'.$home->gate_id)}}" class="btn btn-success">Choose</a>
 				</td>
@@ -53,38 +64,38 @@
 	</table>
 </div>
 @endsection
-@section('scripts')
+
+<!-- @section('scripts')
 <script >
 var baseURL="{!! URL::to("/") !!}";
 $(document).ready(function(){
 	$.ajax({
 		type:'GET',
-		url:baseURL + '/depature_time',
+		url:baseURL + '/departure_time',
 		data:{},
-		success::function(data){
-			$.each(data,function(){
-				$.each(this,function(key,value){
+		success:function(data){	
+			// console.log(data);
+				$.each(data,function(key,value){
+					// console.log(key, value);				
+					// console.log(value.gate_id);
 					if($("#time-"+value.gate_id).length){
-						setupTime(value.gate_id,value.depature_time);
+						setupTime(value.gate_id,value.departure_time);
 					}
+					// console.log(value.departure_time);
 				})
-			})
 		},
 		error:function(XMLHTTPRequest,textStatus,errorThrow){
 			alert("ERROR!!");
 			alert(errorThrown);
 		}
 	});
-	function setupTime(yourId,depatureTime){
-		$('#time'+yourId).timepicker({
-			'minTime': '4:00pm',
-			'maxTime': '10:30pm',
-			timeFormat:'h:i a',
-			step:15,
-			'showDuration': true
-});
+	function setupTime(yourId,departureTime){
+		$('#time-'+yourId).timepicker({
+			// 'minTime': '4:00pm',
+			// 'maxTime': '10:30pm',
+			timeFormat:'h:i a'
+		});
 	}
-
 });
 </script>
-@endsection
+@endsection -->

@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Database\Seeder;
+use App\City;
 
 class CitiesTableSeeder extends Seeder
 {
@@ -11,6 +12,15 @@ class CitiesTableSeeder extends Seeder
      */
     public function run()
     {
-        Factory(App\City::class,3)->create();
+        $cities = [
+            ['name' => 'Yangon','name_mm' => 'ရန်ကုန်'],
+            ['name' =>'Mandalay','name_mm' => 'မန်းတလေး'],
+            ['name' => 'Monywa','name_mm' => 'မုံရွာ'],
+            ['name' => 'NayPyiTaw','name_mm' => 'နေပြည်တော်']
+        ];
+        foreach($cities as $city){
+            City::create($city);
+        }
+        // Factory(App\City::class,3)->create();
     }
 }

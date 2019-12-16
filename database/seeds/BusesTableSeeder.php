@@ -11,6 +11,6 @@ class BusesTableSeeder extends Seeder
      */
     public function run()
     {
-        Factory(App\Bus::class,4)->create();
+        Factory(App\Bus::class,2)->create();
     }
 }

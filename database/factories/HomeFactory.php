@@ -4,6 +4,7 @@ use Faker\Generator as Faker;
 use App\Home;
 use App\Route;
 use App\Gate;
+use App\Bus;
 
 $factory->define(Home::class, function (Faker $faker) {
     return [
@@ -12,6 +13,9 @@ $factory->define(Home::class, function (Faker $faker) {
         },
         'gate_id'=>function(){
             return Gate::all()->random()->id;
+        },
+        'bus_id'=>function(){
+            return Bus::all()->random()->id;
         }
     ];
 });

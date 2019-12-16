@@ -13,9 +13,24 @@ use DB;
 
 class HomeController extends Controller
 {
-    public function __construct()
+    /**
+     * Create a new controller instance.
+     *
+     * @return void
+     */
+    // public function __construct()
+    // {
+    //     $this->middleware('auth');
+    // }
+
+    /**
+     * Show the application dashboard.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function index()
     {
-        $this->middleware('auth');
+        return view('home');
     }
 
     public function show_all_busstation()
@@ -24,25 +39,33 @@ class HomeController extends Controller
         return view('home.all_station',compact('busstations'));
     }
 
-    public function index(){
-    	$routes = Route::all();
-    	return view('home.select_route',compact('routes'));
+    public function show_all_route()
+    {
+        $routes = Route::all();
+        $busstations = BusStation::all();
+    	return view('home.select_route',compact('routes','BusStations'));
     }
     public function selectGate($route){
     	$homes = Home::where('route_id',$route)->get();
         session()->put('route_id',$route);
     	return view('home.select_gate',compact('homes'));
     }
+
     public function selectBus(Gate $gate)
     {
         session()->put('gate_id',$gate->id);
     	return view('home.select_bus',compact('gate'));
     }
-    public function selectSeat($bus)
+    public function selectSeat(Request $request,$id)
     {
-        $seats = Seat::where('bus_id',$bus)->get();
-        return view('home.select_seat',compact('seats'));
+        $bus = Bus::find($id);
+        $home = Home::find($id);
+        $bus->number_of_seats = $request->input('SelectSeat');
+        $bus->save();
+        // $seats = Seat::where('bus_id',$bus)->get();
+        return view('home.select_seat',compact('bus','home'));
     }
+
     public function searchRoute(Request $request)
     {
     	$q = $request->q;
@@ -51,7 +74,8 @@ class HomeController extends Controller
             return view('home.select_route')->withDetails($route)->withQuery($q);
         else return view('home.select_route')->withMessage('No Details found.Try to search again!');
     }
-     public function searchGate(Request $request)
+
+    public function searchGate(Request $request)
     {
         $q = $request->q;
         $route_id = session()->get('route_id');
@@ -62,6 +86,7 @@ class HomeController extends Controller
             return view('home.select_gate')->withDetails($gates)->withQuery($q) ;
         else return view('home.select_gate')->withMessage('No Details found.Try to search again!');
     }
+
      public function searchBus(Request $request)
     {
        $q = $request->q;
@@ -72,6 +97,7 @@ class HomeController extends Controller
             return view('home.select_bus')->withDetails($buses)->withQuery($q) ;
         else return view('home.select_bus')->withMessage('No Details found.Try to search again!');
     }
+
     public function searchSeat(Request $request)
     {
        $q = $request->q;
@@ -83,9 +109,9 @@ class HomeController extends Controller
 
     }
 
-    public function depatureTime(){
+    public function departureTime(){
         $times = Bus::all();
+        // dd(response()->json($times->toArray()));
         return response()->json($times->toArray());
     }
 }
-

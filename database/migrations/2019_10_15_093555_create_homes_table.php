@@ -17,10 +17,12 @@ class CreateHomesTable extends Migration
             $table->increments('id');
             $table->unsignedInteger('route_id');
             $table->unsignedInteger('gate_id');
+            $table->unsignedInteger('bus_id');
             $table->timestamps();
             $table->softDeletes();
             $table->foreign('route_id')->references('id')->on('routes')->onDelete('restrict');
             $table->foreign('gate_id')->references('id')->on('gates')->onDelete('restrict');
+            $table->foreign('bus_id')->references('id')->on('buses')->onDelete('restrict');
         });
     }
 

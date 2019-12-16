@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Database\Seeder;
+use App\BusStation;
 
 class Bus_StationsTableSeeder extends Seeder
 {
@@ -11,6 +12,12 @@ class Bus_StationsTableSeeder extends Seeder
      */
     public function run()
     {
-        Factory(App\BusStation::class,3)->create();
+        $busstations = [
+            ['name'=>'Aungmingalar','name_mm'=>'အောင်မဂ်လာ','city_id'=>1]
+        ];
+        foreach($busstations as $busstation){
+            BusStation::create($busstation);
+        }
+        // Factory(App\BusStation::class,1)->create();
     }
 }

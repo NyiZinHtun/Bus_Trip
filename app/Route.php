@@ -14,4 +14,5 @@ class Route extends Model
     public function to_city(){
         return $this->belongsTo(City::class,'to_id');
     }
+
 }

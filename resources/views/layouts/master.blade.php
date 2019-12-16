@@ -6,8 +6,8 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Bus Trip</title>
     <link rel="stylesheet" href="{{ url('css/app.css') }}">
+    <link rel="stylesheet" href="{{ url('css/seat.css') }}">
     <link rel="stylesheet" href="{{ url('css/jquery.timepicker.css') }}">
-    
 </head>
 <body>
     <div class="container">

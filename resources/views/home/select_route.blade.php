@@ -38,8 +38,8 @@
 			@endforeach
 			@endif
 			@if(isset($routes))
-			@foreach($routes as $route)
-			<tr>				
+			@foreach($routes as $route)				
+			<tr>	
 				<td>{{$route->route_name}}</td>
 				<td>{{$route->from_city->name}}</td>
 				<td>{{$route->to_city->name}}</td>

@@ -11,6 +11,6 @@ class HomesTableSeeder extends Seeder
      */
     public function run()
     {
-        Factory(App\Home::class,9)->create();
+        Factory(App\Home::class,3)->create();
     }
 }

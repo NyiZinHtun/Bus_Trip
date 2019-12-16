@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Database\Seeder;
+use App\Gate;
 
 class GatesTableSeeder extends Seeder
 {
@@ -11,6 +12,16 @@ class GatesTableSeeder extends Seeder
      */
     public function run()
     {
-        Factory(App\Gate::class,2)->create();
+        $gates = [
+            ['name'=>'Elite','name_mm'=>'အီလိုက်််လ်','bus_station_id'=>1,'bus_fee'=>'10000'],
+            ['name'=>'Famous','name_mm'=>'ဖေးမတ်','bus_station_id'=>1,'bus_fee'=>'10000'],
+            ['name'=>'ShweSinSattKyar','name_mm'=>'ရွှေစင်စကြာ်','bus_station_id'=>1,'bus_fee'=>'10000'],
+            ['name'=>'J&J','name_mm'=>'ဂျေ & ဂျေ','bus_station_id'=>1,'bus_fee'=>'10000'],
+            ['name'=>'Shwe Mandalar','name_mm'=>'ရွှေမန်တလာ','bus_station_id'=>1,'bus_fee'=>'10000']
+        ];
+        foreach($gates as $gate){
+            Gate::create($gate);
+        }
+        // Factory(App\Gate::class,2)->create();
     }
 }

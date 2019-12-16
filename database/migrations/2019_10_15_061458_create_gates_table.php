@@ -18,6 +18,7 @@ class CreateGatesTable extends Migration
             $table->string('name')->unique();
             $table->string('name_mm')->unique()->nullable();
             $table->unsignedInteger('bus_station_id');
+            $table->string('bus_fee');
             $table->unsignedInteger('created_by')->nullable();
             $table->unsignedInteger('updated_by')->nullable();
             $table->unsignedInteger('deleted_by')->nullable();
