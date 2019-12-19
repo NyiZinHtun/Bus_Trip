@@ -9,6 +9,7 @@ use App\Gate;
 use App\Bus;
 use App\Seat;
 use App\BusStation;
+use App\Customer;
 use DB;
 
 class HomeController extends Controller
@@ -45,6 +46,7 @@ class HomeController extends Controller
         $busstations = BusStation::all();
     	return view('home.select_route',compact('routes','BusStations'));
     }
+
     public function selectGate($route){
     	$homes = Home::where('route_id',$route)->get();
         session()->put('route_id',$route);
@@ -56,6 +58,7 @@ class HomeController extends Controller
         session()->put('gate_id',$gate->id);
     	return view('home.select_bus',compact('gate'));
     }
+
     public function selectSeat(Request $request,$id)
     {
         $bus = Bus::find($id);
@@ -109,9 +112,32 @@ class HomeController extends Controller
 
     }
 
-    public function departureTime(){
-        $times = Bus::all();
-        // dd(response()->json($times->toArray()));
-        return response()->json($times->toArray());
+    public function recordCustom(Request $request,$id)
+    {
+        $home = Home::find($id);
+        $bus = Bus::find($id);
+        $home->seatNo = $request->input('seatNo');
+        $home->save();
+        return view('home.all_info',compact('bus','home'));
     }
+
+    public function store_information(Request $request,$id)
+    {
+        // $customer = new Customer();
+        // $customer->name = $request->name;
+        // $customer->gender = $request->gender;
+        // $customer->nrc = $request->nrc;
+        // $customer->phone = $request->phone;
+        // $customer->email = $request->email;
+        // $customer->save();
+        $home = Home::find($id);
+        Customer::create(request(['name','gender','nrc','phone','email']));
+        return view('home.cus_info',compact('home','customers'));
+    }
+
+    // public function departureTime(){
+    //     $times = Bus::all();
+    //     // dd(response()->json($times->toArray()));
+    //     return response()->json($times->toArray());
+    // }
 }

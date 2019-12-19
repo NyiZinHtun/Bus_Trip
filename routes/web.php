@@ -6,6 +6,8 @@ Route::get('select_gate/{id}','HomeController@selectGate');
 Route::get('select_bus/{gate}','HomeController@selectBus');
 Route::get('select_gate/{id}','HomeController@selectGate');
 Route::get('select_seat/{id}','HomeController@selectSeat');
+Route::get('customer_info/{id}','HomeController@recordCustom');
+Route::get('storecusInfo/{id}','HomeController@store_information');
 Route::post('/search_route','HomeController@searchRoute');
 Route::post('/search_gate','HomeController@searchGate');
 Route::post('/search_bus','HomeController@searchBus');

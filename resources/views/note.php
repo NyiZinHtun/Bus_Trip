@@ -17,29 +17,40 @@ bus_station,gate
 laravel_localization
 
 
-<div class="container">
-	
-	
-	
-	
-		
-		
-	
-		
-		<tr><td><a href=""><span>2</span></a></td></tr>
-		<tr><td><a href=""><span>3</span></a></td></tr>
-		<tr><td><a href=""><span>4</span></a></td></tr>
-		<tr><td><a href=""><span>5</span></a></td></tr>
-		</tbody>
-		</table>
-		</div>
-		</div>
-		</div>
-	</div>
-	</div>
-	</div>
-	</div>
-	</div>
+<!-- @section('scripts')
+<script >
+var baseURL="{!! URL::to("/") !!}";
+$(document).ready(function(){
+	$.ajax({
+		type:'GET',
+		url:baseURL + '/departure_time',
+		data:{},
+		success:function(data){	
+			// console.log(data);
+				$.each(data,function(key,value){
+					// console.log(key, value);				
+					// console.log(value.gate_id);
+					if($("#time-"+value.gate_id).length){
+						setupTime(value.gate_id,value.departure_time);
+					}
+					// console.log(value.departure_time);
+				})
+		},
+		error:function(XMLHTTPRequest,textStatus,errorThrow){
+			alert("ERROR!!");
+			alert(errorThrown);
+		}
+	});
+	function setupTime(yourId,departureTime){
+		$('#time-'+yourId).timepicker({
+			// 'minTime': '4:00pm',
+			// 'maxTime': '10:30pm',
+			timeFormat:'h:i a'
+		});
+	}
+});
+</script>
+@endsection -->
 
 
 	

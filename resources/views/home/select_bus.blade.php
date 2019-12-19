@@ -47,7 +47,7 @@
 		<tr>
 			<td>{{$bus->bus_no}}</td>
 			<td>{{ $bus->departure_time }}</td>
-			<!-- <td><input type="text" name="departure_date" id="datepicker-1"></td>  -->
+			<!-- <td><input type="text" name="departure_date" id="time-{{ $bus->gate_id }}"></td>  -->
 			<td>
 			<form action="{{ url('/select_seat/'. $bus->id) }}" method="GET">
 				<select name="SelectSeat" class="form-control">
@@ -74,46 +74,3 @@
 	
 </table>
 @endsection
-
-<!-- @section('scripts')
-<script>
-	$.(function(){
-            $('#datepicker').datepicker({
-                language: 'en',
-                minDate: new Date()
-            });
-        })    
-</script>
-<script >
-var baseURL="{!! URL::to("/") !!}";
-$(document).ready(function(){
-	$.ajax({
-		type:'GET',
-		url:baseURL + '/departure_time',
-		data:{},
-		success:function(data){	
-			// console.log(data);
-				$.each(data,function(key,value){
-					// console.log(key, value);				
-					// console.log(value.gate_id);
-					if($("#time-"+value.gate_id).length){
-						setupTime(value.gate_id,value.departure_time);
-					}
-					// console.log(value.departure_time);
-				})
-		},
-		error:function(XMLHTTPRequest,textStatus,errorThrow){
-			alert("ERROR!!");
-			alert(errorThrown);
-		}
-	});
-	function setupTime(yourId,departureTime){
-		$('#time-'+yourId).timepicker({
-			// 'minTime': '4:00pm',
-			// 'maxTime': '10:30pm',
-			timeFormat:'h:i a'
-		});
-	}
-});
-</script>
-@endsection -->
