@@ -22,7 +22,6 @@ class CreateRoutesTable extends Migration
             $table->softDeletes();
             $table->foreign('from_id')->references('id')->on('cities')->onDelete('restrict');
             $table->foreign('to_id')->references('id')->on('cities')->onDelete('restrict');
-
         });
     }
 

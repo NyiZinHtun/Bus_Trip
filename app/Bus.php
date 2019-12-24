@@ -14,6 +14,6 @@ class Bus extends Model
     public function gate(){
         return $this->belongsTo(Gate::class);
     }
-
+    
     protected $guarded=[];
 }

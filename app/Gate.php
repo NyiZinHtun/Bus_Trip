@@ -11,10 +11,14 @@ class Gate extends Model
         return $this->hasMany(Bus::class);
     }
 
-    public function bus_station(){
-        return $this->belongsTo(BusStation::class);
+    public function route(){
+        return $this->belongsTo(Route::class);
     }
-    
-    protected $fillable=['name','name_mm','bus_station_id'];
+
+    // public function home(){
+    //     return $this->belongsTo(Home::class);
+    // }
+
+    protected $fillable=['name','name_mm','route_id'];
     protected $table='gates';
 }

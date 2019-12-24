@@ -13,8 +13,8 @@ class RoutesTableSeeder extends Seeder
     public function run()
     {
         $routes = [
-            ['route_name'=>'Yangon=>Mandalay','from_id'=>1,'to_id'=>2],
-            ['route_name'=>'Yangon=>NayPyiTaw','from_id'=>1,'to_id'=>4],
+            ['route_name'=>'Yangon=>Mandalay','from_id'=>1,'to_id'=>2],              
+            ['route_name'=>'Yangon=>NayPyiTaw','from_id'=>1,'to_id'=>4],           
             ['route_name'=>'Yangon=>Monywa','from_id'=>1,'to_id'=>3]
         ];
         foreach($routes as $route){

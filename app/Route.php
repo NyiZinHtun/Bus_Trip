@@ -15,4 +15,8 @@ class Route extends Model
         return $this->belongsTo(City::class,'to_id');
     }
 
+    public function gates()
+    {
+        return $this->hasMany(Gate::class);
+    }
 }

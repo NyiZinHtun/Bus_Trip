@@ -17,6 +17,7 @@ bus_station,gate
 laravel_localization
 
 
+
 <!-- @section('scripts')
 <script >
 var baseURL="{!! URL::to("/") !!}";

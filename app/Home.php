@@ -7,8 +7,8 @@ use App\Gate;
 
 class Home extends Model
 {
-    public function gate(){
-        return $this->belongsTo(Gate::class);
+    public function bus(){
+        return $this->belongsTo(Bus::class);
     }
     
     public function route(){
@@ -18,4 +18,5 @@ class Home extends Model
     public function customer(){
         return $this->belongsTo(Customer::class);
     }
+
 }

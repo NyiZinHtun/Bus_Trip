@@ -21,7 +21,6 @@
 		<tr>
 			<th>Bus Number</th>
 			<th>Departure Time</th>
-			<!-- <th>Departure Date</th> -->
 			<th>Number of Seats</th>
 			<th>Action</th>
 		</tr>
@@ -47,7 +46,6 @@
 		<tr>
 			<td>{{$bus->bus_no}}</td>
 			<td>{{ $bus->departure_time }}</td>
-			<!-- <td><input type="text" name="departure_date" id="time-{{ $bus->gate_id }}"></td>  -->
 			<td>
 			<form action="{{ url('/select_seat/'. $bus->id) }}" method="GET">
 				<select name="SelectSeat" class="form-control">

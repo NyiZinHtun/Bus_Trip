@@ -47,26 +47,34 @@ class HomeController extends Controller
     	return view('home.select_route',compact('routes','BusStations'));
     }
 
-    public function selectGate($route){
-    	$homes = Home::where('route_id',$route)->get();
-        session()->put('route_id',$route);
-    	return view('home.select_gate',compact('homes'));
+    public function selectGate($id){
+    	// $homes = Home::where('route_id',$route)->get();
+        // session()->put('route_id',$route);
+        $route = Route::find($id);
+    	return view('home.select_gate',compact('route'));
     }
 
-    public function selectBus(Gate $gate)
+    public function selectBus($id)
     {
-        session()->put('gate_id',$gate->id);
+        // session()->put('gate_id',$gate->id);
+        $gate = Gate::find($id);
     	return view('home.select_bus',compact('gate'));
     }
 
     public function selectSeat(Request $request,$id)
     {
         $bus = Bus::find($id);
-        $home = Home::find($id);
+        $gate = Gate::find($id);
+        $homes = Home::all();
         $bus->number_of_seats = $request->input('SelectSeat');
         $bus->save();
+        $seat_arr = [];
+        foreach($homes as $result) {
+            $seat_arr[] =  explode(" ",$result->seatNo);
+        }
+        print_r($seat_arr);
         // $seats = Seat::where('bus_id',$bus)->get();
-        return view('home.select_seat',compact('bus','home'));
+        // return view('home.select_seat',compact('bus','gate','homes','seat_arr'));
     }
 
     public function searchRoute(Request $request)
@@ -114,8 +122,11 @@ class HomeController extends Controller
 
     public function recordCustom(Request $request,$id)
     {
-        $home = Home::find($id);
         $bus = Bus::find($id);
+        $home = new Home();
+        $home->route_id = $request->input('route_id');
+        $home->gate_id = $request->input('gate_id');
+        $home->bus_id = $request->input('bus_id');
         $home->seatNo = $request->input('seatNo');
         $home->save();
         return view('home.all_info',compact('bus','home'));
@@ -123,16 +134,15 @@ class HomeController extends Controller
 
     public function store_information(Request $request,$id)
     {
-        // $customer = new Customer();
-        // $customer->name = $request->name;
-        // $customer->gender = $request->gender;
-        // $customer->nrc = $request->nrc;
-        // $customer->phone = $request->phone;
-        // $customer->email = $request->email;
-        // $customer->save();
-        $home = Home::find($id);
-        Customer::create(request(['name','gender','nrc','phone','email']));
-        return view('home.cus_info',compact('home','customers'));
+        $customer = new Customer();
+        $customer->home_id = $request->input('home_id');
+        $customer->name = $request->name;
+        $customer->gender = $request->gender;
+        $customer->nrc = $request->nrc;
+        $customer->phone = $request->phone;
+        $customer->email = $request->email;
+        $customer->save();
+        return view('home.cus_info',compact('customer'));
     }
 
     // public function departureTime(){

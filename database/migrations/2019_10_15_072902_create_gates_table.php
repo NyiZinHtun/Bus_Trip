@@ -17,14 +17,14 @@ class CreateGatesTable extends Migration
             $table->increments('id');
             $table->string('name')->unique();
             $table->string('name_mm')->unique()->nullable();
-            $table->unsignedInteger('bus_station_id');
+            $table->unsignedInteger('route_id');
             $table->string('bus_fee');
             $table->unsignedInteger('created_by')->nullable();
             $table->unsignedInteger('updated_by')->nullable();
             $table->unsignedInteger('deleted_by')->nullable();
             $table->timestamps();
             $table->softDeletes();
-            $table->foreign('bus_station_id')->references('id')->on('bus_stations')->onDelete('restrict');
+            $table->foreign('route_id')->references('id')->on('routes')->onDelete('restrict');
         });
     }
 

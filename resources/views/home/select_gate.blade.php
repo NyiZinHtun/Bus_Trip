@@ -22,7 +22,6 @@
 			<tr>
 				<th>Gate</th>
 				<th>Bus_Fee</th>
-				<!-- <th>Departure Time</th> -->
 				<th>Action</th>
 			</tr>
 		</thead>
@@ -38,24 +37,13 @@
 			</tr>
 			@endforeach
 			@endif
-			@if(isset($homes))
-			@foreach($homes as $home)
+			@if(isset($route))
+			@foreach($route->gates as $gate)
 			<tr>
-				<td>{{$home->gate->name}}</td>
-				<td>{{ $home->gate->bus_fee }}</td>
-				<!-- <td> -->
-					<!-- <select name="Time" class="form-control">
-					<option value="0">Choose Time</option>
-					@foreach($home->gate->buses as $bus)
-						<option value="{{ $bus->id }}">
-							{{ $bus->departure_time }}
-						</option>
-					@endforeach
-				</select> -->
-				<!-- <input type="text" name="depature_time" id="time-{{ $home->gate_id}}"> -->
-				<!-- </td> -->
+				<td>{{$gate->name}}</td>
+				<td>{{ $gate->bus_fee }}</td>
 				<td>
-					<a href="{{url('select_bus/'.$home->gate_id)}}" class="btn btn-success">Choose</a>
+					<a href="{{url('select_bus/'.$gate->id)}}" class="btn btn-success">Choose</a>
 				</td>
 			</tr>
 			@endforeach

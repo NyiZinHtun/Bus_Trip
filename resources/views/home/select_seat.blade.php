@@ -31,9 +31,13 @@
 								<div class="col-md-offset-2 col-md-8">
 									<div class="driver-seat">Driver</div>
 									<table class="table table-seat-plan">
-										<tbody>
-										<tr>
-											<td><button class="seat seat-available" id="jQueryColorChange" value="1">1</button></td>
+										<tbody>	
+										@foreach($homes as $home)							
+										 <?php $int =  explode(" ",$home->seatNo) ?>								
+										@endforeach										
+										<tr>										
+											<td>
+												<button class="seat seat-available" id="jQueryColorChange" value="1">1</button></td>
 											<td><button class="seat seat-available" id="jQueryColorChange" value="2">2</button></td>
 											<td><span class="aisle"></span></td>
 											<td><button class="seat seat-available" id="jQueryColorChange" value="3">3</button></td>
@@ -77,12 +81,12 @@
 							<tr>
 								<td class="col-4">Route_Name</td>
 								<td class="col-8">						
-									{{ $home->route->route_name }}
+									{{ $bus->gate->route->route_name }}
 								</td>
 							</tr>
 							<tr>
 								<th class="col-4">Bus_Name</th>
-								<th class="col-8">{{ $home->gate->name }}</th>
+								<th class="col-8">{{ $bus->gate->name }}</th>
 							</tr>
 							<tr>
 								<th class="col-4">Departure Time</th>
@@ -92,23 +96,23 @@
 								<th class="col-4">Bus_Fee</th>
 								<th class="col-8">
 								<?php 
-									$string = (int)$home->gate->bus_fee;
+									$string = (int)$bus->gate->bus_fee;
 									$integer = $bus->number_of_seats;
 									$integer = $string * $integer;							
-								?> 
-								{{ $integer }} MMK</th>
-							</tr>
-							<tr>
-								<th class="col-4">Departure Time</th>
-								<th class="col-8">{{ $home->seatNo }}</th>
+									?> 
+										{{ $integer }} MMK</th>
+								</th>								
 							</tr>
 						</tbody>
 					</table>
 					<hr>
 					<h3  class="text-my text-muted text-center">Please Select {{ $bus->number_of_seats }} Seat </h3>
 					<h1 id="numbers" class="text-primary text-center"></h1>
-					<form action="{{ url('customer_info/'.$home->id) }}" method="GET">
+					<form action="{{ url('customer_info/'.$bus->id) }}" method="GET">
 						{{ csrf_field() }}
+						<input type="hidden" class="form-control" name="route_id" value="{{ $bus->gate->route->id }}">
+						<input type="hidden" class="form-control" name="gate_id" value="{{ $bus->gate->id }}">
+						<input type="hidden" class="form-control" name="bus_id" value="{{ $bus->id }}">
 						<input type="hidden" class="form-control" name ="seatNo" id="seats">
 						<button class="btn btn-success btn-lg btn-block">
 							<span class="my-span">Continue To Traveller Info</span>
@@ -138,11 +142,7 @@
 						selectedSeats.push(value);
 					}
 				}
-
 				$('#numbers').html(selectedSeats.join(', '));
-				// var value = document.querySelector('#numbers');
-				// $('#seats').html(value);
-				// console.log(value);
 				$('#seats').val(selectedSeats);
 			});
 		});

@@ -10,6 +10,8 @@
 							<div class="row">
                                 <div class="panel-body">
                                     <form action="{{ url('storecusInfo/'.$home->id) }}" method="GET">
+										{{ csrf_field() }}
+										<input type="hidden" class="form-control" name="home_id" value="{{ $home->id }}">
                                         <div class="form-group">
                                             <label for="name">Traveller Name</label>
                                             <input type="text" name="name" class="form-control">
@@ -48,7 +50,11 @@
 					</div>
 					<table class="table table-seat-plan">
 						<tbody>
-							<tr>
+						<?php
+							$int = explode(" ",$home->seatNo);								
+							dd($int);
+						?>
+							<tr>													
 								<td class="col-4">Route_Name</td>
 								<td class="col-8">						
 									{{ $home->route->route_name }}
@@ -56,21 +62,23 @@
 							</tr>
 							<tr>
 								<th class="col-4">Bus_Name</th>
-								<th class="col-8">{{ $home->gate->name }}</th>
+								<th class="col-8">{{ $home->bus->gate->name }}</th>
 							</tr>
 							<tr>
 								<th class="col-4">Departure Time</th>
-								<th class="col-8">{{ $bus->departure_time }}</th>
+								<th class="col-8">{{ $home->bus->departure_time }}</th>
 							</tr>
 							<tr>
 								<th class="col-4">Bus_Fee</th>
 								<th class="col-8">
 								<?php 
-									$string = (int)$home->gate->bus_fee;
-									$integer = $bus->number_of_seats;
+									$string = (int)$home->bus->gate->bus_fee;
+									$integer = $home->bus->number_of_seats;
 									$integer = $string * $integer;							
-								?> 
-								{{ $integer }} MMK</th>
+									?> 
+										{{ $integer }} MMK</th>
+								</th>
+								</th>
                             </tr>
                             <tr>
                                 <th class="col-4">Seat Number</th>
