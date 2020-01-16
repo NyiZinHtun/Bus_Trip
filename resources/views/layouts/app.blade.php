@@ -44,8 +44,8 @@
                     <ul class="nav navbar-nav navbar-right">
                         <!-- Authentication Links -->
                         @guest
-                            <li><a href="{{ url('locale/en') }}" >Eng</a></li>
-                            <li><a href="{{ url('locale/myan') }}" >Myan</a></li>
+                            <li><a href="{{ url('locale/en') }}" >English</a></li>
+                            <li><a href="{{ url('locale/myan') }}" >မြန်မာ</a></li>
                             <li><a href="{{ route('login') }}">@lang('message.login')</a></li>
                             <li><a href="{{ route('register') }}">@lang('message.register')</a></li>
                         @else
