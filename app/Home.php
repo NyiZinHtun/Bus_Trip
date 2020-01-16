@@ -19,4 +19,12 @@ class Home extends Model
         return $this->belongsTo(Customer::class);
     }
 
-}
+    public function seat(){
+        $seat = Home::where('route_id',$this->id)->where('gate_id',$this->id)->where('bus_id',$this->id)->where('seatNo',explode(" ",$this->seatNo));
+        if($seat){
+            return true;
+        }else{
+            return false;
+        }
+    }
+}		

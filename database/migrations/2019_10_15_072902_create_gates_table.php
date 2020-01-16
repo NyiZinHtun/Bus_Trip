@@ -15,8 +15,8 @@ class CreateGatesTable extends Migration
     {
         Schema::create('gates', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('name')->unique();
-            $table->string('name_mm')->unique()->nullable();
+            $table->string('name');
+            $table->string('name_mm')->nullable();
             $table->unsignedInteger('route_id');
             $table->string('bus_fee');
             $table->unsignedInteger('created_by')->nullable();

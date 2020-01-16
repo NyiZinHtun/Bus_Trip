@@ -11,6 +11,7 @@ use App\Seat;
 use App\BusStation;
 use App\Customer;
 use DB;
+use App;
 
 class HomeController extends Controller
 {
@@ -63,18 +64,14 @@ class HomeController extends Controller
 
     public function selectSeat(Request $request,$id)
     {
+        $route = Route::find($id);
         $bus = Bus::find($id);
         $gate = Gate::find($id);
-        $homes = Home::all();
+        $home = Home::find($id);
         $bus->number_of_seats = $request->input('SelectSeat');
         $bus->save();
-        $seat_arr = [];
-        foreach($homes as $result) {
-            $seat_arr[] =  explode(" ",$result->seatNo);
-        }
-        print_r($seat_arr);
-        // $seats = Seat::where('bus_id',$bus)->get();
-        // return view('home.select_seat',compact('bus','gate','homes','seat_arr'));
+        // $seat = Home::where('route_id',$route->id)->first();
+        return view('home.select_seat',compact('bus','gate','home','seat_arr'));
     }
 
     public function searchRoute(Request $request)
@@ -144,6 +141,13 @@ class HomeController extends Controller
         $customer->save();
         return view('home.cus_info',compact('customer'));
     }
+
+    // public function lang($locale)
+    // {
+    //     App::setLocale($locale);
+    //     session()->put('locale', $locale);
+    //     return redirect()->back();
+    // }
 
     // public function departureTime(){
     //     $times = Bus::all();

@@ -1,4 +1,9 @@
 <?php
+
+// Route::get('/', function () {
+//     return view('welcome');
+// });
+
 Route::get('/','HomeController@show_all_busstation');
 Route::get('select_route/{busstation}','HomeController@show_all_route');
 Route::get('select_gate/{id}','HomeController@selectGate');
@@ -23,7 +28,17 @@ Route::group(['prefix'=>'admin','namespace'=> 'Admin'],function(){
     Route::resource('bus','BusController');
 });
 
-Route::get('departure_time','HomeController@departureTime');
+// Route::get('departure_time','HomeController@departureTime');
+Route::get('locale', function () {
+    return \App::getLocale();
+});
+
+Route::get('locale/{locale}', function ($locale) {
+    \Session::put('locale', $locale);
+    return redirect()->back();
+});
+
+// Route::view('/hello', 'hello');
 
 Route::get('/home', 'HomeController@index')->name('home');
 

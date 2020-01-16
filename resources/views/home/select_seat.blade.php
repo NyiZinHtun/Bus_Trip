@@ -31,24 +31,30 @@
 								<div class="col-md-offset-2 col-md-8">
 									<div class="driver-seat">Driver</div>
 									<table class="table table-seat-plan">
-										<tbody>	
-										@foreach($homes as $home)							
-										 <?php $int =  explode(" ",$home->seatNo) ?>								
-										@endforeach										
-										<tr>										
-											<td>
-												<button class="seat seat-available" id="jQueryColorChange" value="1">1</button></td>
-											<td><button class="seat seat-available" id="jQueryColorChange" value="2">2</button></td>
-											<td><span class="aisle"></span></td>
-											<td><button class="seat seat-available" id="jQueryColorChange" value="3">3</button></td>
-											<td><button class="seat seat-available" id="jQueryColorChange" value="4">4</button></td>
+									<tbody>	
+									@if($home->seat() == true)
+										<tr>						
+										<td><button class="seat seat-available" value="1">1</button></td>
+										<td><button class="seat seat-available" value="2">2</button></td>
+										<td><span class="aisle"></span></td>
+										<td><button class="seat seat-available" value="3">3</button></td>
+										<td><button class="seat seat-available" value="4" id="button">over</button></td>
 										</tr>
-										<tr>
-											<td><button class="seat seat-available" id="jQueryColorChange" value="5">5</button></td>
-											<td><button class="seat seat-available" id="jQueryColorChange" value="6">6</button></td>
+										@else
+										<tr>						
+											<td><button class="seat seat-available" value="1">1</button></td>
+											<td><button class="seat seat-available" value="2">2</button></td>
 											<td><span class="aisle"></span></td>
-											<td><button class="seat seat-available" id="jQueryColorChange" value="7">7</button></td>
-											<td><button class="seat seat-available" id="jQueryColorChange" value="8">8</button></td>
+											<td><button class="seat seat-available" value="3">3</button></td>
+											<td><button class="seat seat-available" value="4">4</button></td>
+										</tr>
+										@endif
+										<tr>
+											<td><button class="seat seat-available" value="5">5</button></td>
+											<td><button class="seat seat-available" value="6">6</button></td>
+											<td><span class="aisle"></span></td>
+											<td><button class="seat seat-available" value="7">7</button></td>
+											<td><button class="seat seat-available" value="8">8</button></td>
 										</tr>
 										<tr>
 											<td><button class="seat seat-available" id="jQueryColorChange" value="9">9</button></td>
@@ -63,8 +69,8 @@
 											<td><span class="aisle"></span></td>
 											<td><button class="seat seat-available" id="jQueryColorChange" value="15">15</button></td>
 											<td><button class="seat seat-available" id="jQueryColorChange" value="16">16</button></td>										
-										</tr>										
-										</tbody>
+										</tr>									
+									</tbody>
 									</table>
 								</div>
 							</div>
@@ -147,6 +153,7 @@
 			});
 		});
 
+		document.getElementById('button').disabled = true;
 	// $(function(){
 	// 	$('button').bind('click', function() {
     //            var value =  $(this).unbind().val();

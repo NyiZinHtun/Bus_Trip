@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html lang="{{ app()->getLocale() }}">
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+<!-- <html lang="{{ app()->getLocale() }}"> -->
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -29,7 +30,7 @@
 
                     <!-- Branding Image -->
                     <a class="navbar-brand" href="{{ url('/') }}">
-                        {{ config('app.name', 'Laravel') }}
+                        @lang('message.welcome')
                     </a>
                 </div>
 
@@ -43,8 +44,10 @@
                     <ul class="nav navbar-nav navbar-right">
                         <!-- Authentication Links -->
                         @guest
-                            <li><a href="{{ route('login') }}">Login</a></li>
-                            <li><a href="{{ route('register') }}">Register</a></li>
+                            <li><a href="{{ url('locale/en') }}" >Eng</a></li>
+                            <li><a href="{{ url('locale/myan') }}" >Myan</a></li>
+                            <li><a href="{{ route('login') }}">@lang('message.login')</a></li>
+                            <li><a href="{{ route('register') }}">@lang('message.register')</a></li>
                         @else
                             <li class="dropdown">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true" v-pre>

@@ -51,8 +51,7 @@
 					<table class="table table-seat-plan">
 						<tbody>
 						<?php
-							$int = explode(" ",$home->seatNo);								
-							dd($int);
+							$int = explode(" ",$home->seatNo);							
 						?>
 							<tr>													
 								<td class="col-4">Route_Name</td>

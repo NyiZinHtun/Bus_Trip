@@ -77,11 +77,11 @@
                 </div>
             @endif
 
-
+            
 
             <div class="content">
                 <div class="title m-b-md">
-                    Laravel
+                    Laravel @lang('pagination.previous')
                 </div>
 
                 <div class="links">
@@ -97,3 +97,4 @@
         </div>
     </body>
 </html>
+
