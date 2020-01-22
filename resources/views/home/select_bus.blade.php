@@ -22,7 +22,7 @@
 			<th>Bus Number</th>
 			<th>Departure Time</th>
 			<th>Number of Seats</th>
-			<th>Action</th>
+			<th>@lang('message.action')</th>
 		</tr>
 	</thead>
 	<tbody>
@@ -58,7 +58,7 @@
 				</select>
 				<td>
 				@if($bus->is_available==0)
-				<a href="{{url('select_seat/'.$bus->id)}}"><button class="btn btn-success">Choose</button></a>
+				<a href="{{url('select_seat/'.$bus->id)}}"><button class="btn btn-success">@lang('message.button')</button></a>
 				@else
 				<b class="text-danger">Over</b>
 				@endif

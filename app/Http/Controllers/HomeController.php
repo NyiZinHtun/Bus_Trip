@@ -12,6 +12,8 @@ use App\BusStation;
 use App\Customer;
 use DB;
 use App;
+use App\Mail\MailNotify;
+use Illuminate\Support\Facades\Mail;
 
 class HomeController extends Controller
 {
@@ -131,6 +133,7 @@ class HomeController extends Controller
 
     public function store_information(Request $request,$id)
     {
+        $home = Home::find($id);
         $customer = new Customer();
         $customer->home_id = $request->input('home_id');
         $customer->name = $request->name;
@@ -139,9 +142,16 @@ class HomeController extends Controller
         $customer->phone = $request->phone;
         $customer->email = $request->email;
         $customer->save();
-        return view('home.cus_info',compact('customer'));
+        $to_email = "nztcu.monywa@gmail.com"; 
+        Mail::to($to_email)->send(new MailNotify($customer)); 
+        return view('home.cus_info',compact('home','customer'))->with('success','Your E-mail has been sent successfully.');
     }
 
+    // public function sendEmailToUser(){
+    //     $to_email = "nztcu.monywa@gmail.com"; 
+    //     Mail::to($to_email)->send(new MailNotify); 
+    //     return "<p> Your E-mail has been sent successfully. </p>";
+    // }
     // public function lang($locale)
     // {
     //     App::setLocale($locale);

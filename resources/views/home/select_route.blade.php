@@ -1,4 +1,4 @@
-@extends('layouts.master')
+@extends('layouts.app')
 @section('content')
 <div class="table-responsive">
 	<form action="/search_route" method="POST" role="search">
@@ -19,10 +19,10 @@
 	@endif
 	<table class="table table-hover">
 		<tr>
-			<th>Route Name</th>
-			<th>From</th>
-			<th>To</th>
-			<th>Action</th>
+			<th>@lang('message.r_name')</th>
+			<th>@lang('message.from')</th>
+			<th>@lang('message.to')</th>
+			<th>@lang('message.action')</th>
 		</tr>
 		<tbody>
 			@if(isset($details))
@@ -43,7 +43,7 @@
 				<td>{{$route->route_name}}</td>
 				<td>{{$route->from_city->name}}</td>
 				<td>{{$route->to_city->name}}</td>
-				<td><a href="{{url('select_gate/'.$route->id)}}" class="btn btn-success">Choose</a></td>		
+				<td><a href="{{url('select_gate/'.$route->id)}}" class="btn btn-success">@lang('message.button')</a></td>		
 			</tr>
 			@endforeach	
 			@endif

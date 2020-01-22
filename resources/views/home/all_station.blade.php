@@ -7,7 +7,7 @@
 		<tr>
 			<td>@lang('message.bs_name')</td>
 			<td>@lang('message.bs_city')</td>
-			<td>@lang('message.bs_action')</td>
+			<td>@lang('message.action')</td>
 		</tr>
 	</thead>
 		@foreach($busstations as $busstation)

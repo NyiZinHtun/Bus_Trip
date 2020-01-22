@@ -1,4 +1,4 @@
-@extends('layouts.master')
+@extends('layouts.app')
 @section('content')
 <div class="table-responsive">
 	<form action="/search_gate" method="POST" role="search">
@@ -20,9 +20,9 @@
 	<table class="table table-hover">
 		<thead>
 			<tr>
-				<th>Gate</th>
-				<th>Bus_Fee</th>
-				<th>Action</th>
+				<th>@lang('message.gate')</th>
+				<th>@lang('message.b_fee')</th>
+				<th>@lang('message.action')</th>
 			</tr>
 		</thead>
 		<tbody>
@@ -43,7 +43,7 @@
 				<td>{{$gate->name}}</td>
 				<td>{{ $gate->bus_fee }}</td>
 				<td>
-					<a href="{{url('select_bus/'.$gate->id)}}" class="btn btn-success">Choose</a>
+					<a href="{{url('select_bus/'.$gate->id)}}" class="btn btn-success">@lang('message.button')</a>
 				</td>
 			</tr>
 			@endforeach

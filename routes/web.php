@@ -38,8 +38,7 @@ Route::get('locale/{locale}', function ($locale) {
     return redirect()->back();
 });
 
-// Route::view('/hello', 'hello');
-
+// Route::get('send-mail','HomeController@sendEmailToUser');
 Route::get('/home', 'HomeController@index')->name('home');
 
 Auth::routes();
